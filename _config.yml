@@ -8,3 +8,10 @@ collections:
   projects:
     output: true
     permalink: /projects/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project

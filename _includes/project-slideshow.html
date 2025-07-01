@@ -1,9 +1,39 @@
+{% assign imgs = include.images | default: page.images %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <div class="project-slideshow">
-  {% for img in page.images %}
-    <div><img src="{{ img }}" alt="Project photo {{ forloop.index }}"></div>
+  {% for img in imgs %}
+    <div><img src="{{ img }}" alt="Photo {{ forloop.index }}" style="max-width:100%;"></div>
   {% endfor %}
 </div>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>document.addEventListener("DOMContentLoaded",()=>{
-  document.querySelector('.project-slideshow').slick({dots:true,arrows:true});
-});</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded",()=>{
+    $('.project-slideshow').slick({dots:true,arrows:true});
+  });
+</script>
+<style>
+  .project-slideshow {
+    height: 50%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .project-slideshow img {
+    width: 100%;
+    height: auto;
+  }
+  .slick-dots {
+    bottom: 10px;
+  }
+</style>

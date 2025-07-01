@@ -1,0 +1,140 @@
+---
+layout: none
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coatings Northwest Inc</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* hero overlay */
+    .hero {
+      position: relative;
+      background: url('/assets/img/hero.jpg') center/cover no-repeat;
+      height: 60vh;
+      color: #fff;
+    }
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 1rem;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">Coatings NW</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#nav"
+      aria-controls="nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="hero mb-5">
+  <div class="overlay">
+    <h1 class="display-4">Commercial & Industrial Coatings</h1>
+    <p class="lead">Painting, Sandblasting &amp; Protective Finishes</p>
+  </div>
+</header>
+<section class="container mb-5">
+  <h2>About Us</h2>
+  <p>Coatings Northwest Inc has been serving the Pacific Northwest since 2001, providing high-quality industrial coatings and linings for a wide range of applications. Our experienced team is dedicated to delivering exceptional results with every project.</p>
+</section>
+<main class="container mb-5">
+  <h2 id="projects" class="mb-4">Recent Projects</h2>
+  <div class="row g-4">
+    {% for project in site.projects %}
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div
+            id="carousel-{{ forloop.index }}"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              {% for img in project.images %}
+                <div
+                  class="carousel-item {% if forloop.first %}active{% endif %}"
+                >
+                  <img
+                    src="{{ img }}"
+                    class="d-block w-100"
+                    alt="{{ project.title }} photo {{ forloop.index }}"
+                  >
+                </div>
+              {% endfor %}
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carousel-{{ forloop.index }}"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carousel-{{ forloop.index }}"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+            </button>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ project.url }}">{{ project.title }}</a>
+            </h5>
+            <p class="card-text">{{ project.content | strip_html | truncate: 100 }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+<footer class="bg-light py-4 text-center">
+  <div class="container">
+    &copy; {{ site.time | date: "%Y" }} Coatings Northwest Inc
+  </div>
+</footer>
+
+<!-- Bootstrap JS bundle (includes Popper) -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
+</body>
+</html>
