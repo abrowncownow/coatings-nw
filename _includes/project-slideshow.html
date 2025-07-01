@@ -1,0 +1,9 @@
+<div class="project-slideshow">
+  {% for img in page.images %}
+    <div><img src="{{ img }}" alt="Project photo {{ forloop.index }}"></div>
+  {% endfor %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelector('.project-slideshow').slick({dots:true,arrows:true});
+});</script>

@@ -1,0 +1,9 @@
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date",  name: "date",  widget: "datetime" }
+      - { label: "Images", name: "images", widget: "list", media_folder: "assets/img/projects", public_folder: "/assets/img/projects" }
