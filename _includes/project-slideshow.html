@@ -1,39 +1,53 @@
-{% assign imgs = include.images | default: page.images %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+{% comment %}
+  A Bootstrap carousel for an arbitrary number of images.
+  Give each one a unique ID based on the page’s title.
+{% endcomment %}
+{% capture carousel_id %}projectCarousel-{{ page.title | slugify }}{% endcapture %}
 
-<div class="project-slideshow">
-  {% for img in imgs %}
-    <div><img src="{{ img }}" alt="Photo {{ forloop.index }}" style="max-width:100%;"></div>
-  {% endfor %}
+<div id="{{ carousel_id }}" class="carousel slide" data-bs-ride="carousel">
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    {% for img in page.images %}
+      <button 
+        type="button" 
+        data-bs-target="#{{ carousel_id }}" 
+        data-bs-slide-to="{{ forloop.index0 }}"
+        class="{% if forloop.first %}active{% endif %}"
+        aria-label="Slide {{ forloop.index }}"
+      ></button>
+    {% endfor %}
+  </div>
+
+  <!-- Slides -->
+  <div class="carousel-inner">
+    {% for img in page.images %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <img 
+          src="{{ img }}" 
+          class="d-block w-100" 
+          alt="{{ page.title }} photo {{ forloop.index }}"
+        >
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <button 
+    class="carousel-control-prev" 
+    type="button" 
+    data-bs-target="#{{ carousel_id }}" 
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button 
+    class="carousel-control-next" 
+    type="button" 
+    data-bs-target="#{{ carousel_id }}" 
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded",()=>{
-    $('.project-slideshow').slick({dots:true,arrows:true});
-  });
-</script>
-<style>
-  .project-slideshow {
-    height: 50%;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    overflow: hidden;
-    padding: 0;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .project-slideshow img {
-    width: 100%;
-    height: auto;
-  }
-  .slick-dots {
-    bottom: 10px;
-  }
-</style>
