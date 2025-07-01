@@ -1,7 +1,8 @@
-theme: "minimal-mistakes-jekyll"
-title: "Coatings Northwest Inc"
+remote_theme: "mmistakes/minimal-mistakes@latest"
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
+title: "Coatings Northwest Inc"
 collections:
   projects:
     output: true
