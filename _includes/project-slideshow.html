@@ -1,6 +1,6 @@
 {% comment %}
-  A Bootstrap carousel for an arbitrary number of images.
-  Give each one a unique ID based on the page’s title.
+  A Bootstrap carousel for project pages.
+  Uses | relative_url on each img src so it works under your baseurl.
 {% endcomment %}
 {% capture carousel_id %}projectCarousel-{{ page.title | slugify }}{% endcapture %}
 
@@ -8,9 +8,9 @@
   <!-- Indicators -->
   <div class="carousel-indicators">
     {% for img in page.images %}
-      <button 
-        type="button" 
-        data-bs-target="#{{ carousel_id }}" 
+      <button
+        type="button"
+        data-bs-target="#{{ carousel_id }}"
         data-bs-slide-to="{{ forloop.index0 }}"
         class="{% if forloop.first %}active{% endif %}"
         aria-label="Slide {{ forloop.index }}"
@@ -22,9 +22,9 @@
   <div class="carousel-inner">
     {% for img in page.images %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <img 
-          src="{{ img }}" 
-          class="d-block w-100" 
+        <img
+          src="{{ img | relative_url }}"
+          class="d-block w-100"
           alt="{{ page.title }} photo {{ forloop.index }}"
         >
       </div>
@@ -32,19 +32,19 @@
   </div>
 
   <!-- Controls -->
-  <button 
-    class="carousel-control-prev" 
-    type="button" 
-    data-bs-target="#{{ carousel_id }}" 
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#{{ carousel_id }}"
     data-bs-slide="prev"
   >
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button 
-    class="carousel-control-next" 
-    type="button" 
-    data-bs-target="#{{ carousel_id }}" 
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#{{ carousel_id }}"
     data-bs-slide="next"
   >
     <span class="carousel-control-next-icon" aria-hidden="true"></span>

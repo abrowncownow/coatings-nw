@@ -18,7 +18,7 @@
   <!-- reuse your navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/">Coatings NW</a>
+      <a class="navbar-brand" href="{{ '/' | relative_url }}">Coatings NW</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -33,7 +33,7 @@
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ '/#projects' | relative_url }}">Projects</a></li>
         </ul>
       </div>
     </div>
